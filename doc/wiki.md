@@ -93,6 +93,8 @@
   docker build -t pandora .
   docker run -it --rm pandora
   ```
+  
+* Serverless部署见项目：[pandora-cloud-serverless](https://github.com/pengzhile/pandora-cloud-serverless)
 
 * 输入用户名密码登录即可，登录密码理论上不显示出来，莫慌。
 * 简单而粗暴，不失优雅。
@@ -118,12 +120,13 @@
 * `PANDORA_API` 使用`gpt-3.5-turbo`API请求，**你可能需要向`OpenAI`支付费用**。
 * `PANDORA_SENTRY` 启用`sentry`框架来发送错误报告供作者查错，敏感信息**不会被发送**。
 * `PANDORA_VERBOSE` 显示调试信息，且出错时打印异常堆栈信息，供查错使用。
+* `PANDORA_THREADS` 指定服务启动的线程数，默认为 `8`，Cloud模式为 `4`。
 * 使用Docker方式，设置环境变量即可，无视上述`程序参数`。
 
 ## 关于 Access Token
 
 * 使用`Access Token`方式登录，可以无代理直连。
-* [这个服务](https://ai.fakeopen.com/auth) 可以帮你安全有效拿到`Access Token`，无论是否第三方登录。
+* [这个服务](https://ai-20230626.fakeopen.com/auth) 可以帮你安全有效拿到`Access Token`，无论是否第三方登录。
 * 其中`accessToken`字段的那一长串内容即是`Access Token`。
 * `Access Token`可以复制保存，其有效期目前为`14天`。
 * 不要泄露你的`Access Token`，使用它可以操纵你的账号。
@@ -193,3 +196,9 @@
 
 * 点击`触发器`选项卡，可以添加自定义访问域名。
 * 参考`高阶设置`中的环境变量使用你的服务地址进行替换。
+
+## 日抛版代理地址
+
+* 每日凌晨`1`点，将会同时生成一个当日子域名，如 `ai-20230625.fakeopen.com`。
+* 子域名使用效果完全等同于 `ai.fakeopen.com`。至于作用，湖北的你肯定能懂。
+* 可将环境变量替换成子域，如 `CHATGPT_API_PREFIX=https://ai-20230625.fakeopen.com`。
